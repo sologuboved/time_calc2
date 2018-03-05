@@ -1,0 +1,11 @@
+.idea/
+tkn.py
+calculate_days.py
+calculate_hours.py
+commands.txt
+global_vars.py
+launch.py
+process_days_input.py
+process_hours_input.py
+process_output.py
+tcb.py
