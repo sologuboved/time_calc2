@@ -1,6 +1,5 @@
 from operator import add, sub
 from conversions import *
-from process_output import *
 
 
 def find_date(user_input, plus, loc=None):
@@ -63,7 +62,7 @@ def find_how_many(user_input, loc=None):
     except ValueError as e:
         return e
     start, fin = sorted([start, fin])
-    lapse = (fin - start).days
+    lapse = lapse_to_days(fin - start)
     res = lapse // 7
     remaining_date = fin - timedelta(lapse % 7)
     while remaining_date <= fin:
@@ -88,4 +87,3 @@ if __name__ == '__main__':
     # print(find_days("10.3.19 / 20.3.19"))
     # print(find_dow('07.03.18'))
     # print(find_how_many("40 / 19 / Mon"))
-

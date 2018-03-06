@@ -2,6 +2,17 @@ from datetime import datetime, timedelta
 from global_vars import *
 
 
+def date_to_str(date, loc, with_dow):
+    formatter = "%d %B %Y"
+    if with_dow:
+        formatter += ", %A"
+    return convert(date, loc, to_utc=False).strftime(formatter)
+
+
+def lapse_to_days(lapse):
+    return lapse.days
+
+
 def str_to_date(raw_date, loc):
     now = datetime.now(tz=loc)
     if raw_date == 'now':
