@@ -7,9 +7,10 @@ def process_date(raw_date, loc):
     if raw_date == 'now':
         return now
     order = [DAY, MONTH, YEAR]
-    dict_date = dict(zip(order, map(int, raw_date.split(DOT))))
-    date = datetime(**{key: dict_date.get(key, getattr(now, key)) for key in order})
-    return loc.localize(date, is_dst=None).astimezone(UTC)
+    date = {key: dict(zip(order, map(int, raw_date.split(DOT)))).get(key, getattr(now, key)) for key in order}
+    if date[YEAR] < 100:
+        date[YEAR] += 2000
+    return loc.localize(datetime(**date), is_dst=None).astimezone(UTC)
 
 
 def process_lapse(raw_lapse, daywise):
@@ -20,6 +21,6 @@ def process_lapse(raw_lapse, daywise):
 
 
 if __name__ == '__main__':
-    print(process_date('now', MOSCOW))
+    print(process_date('07', MOSCOW))
     # print(process_lapse("50", True))
 
