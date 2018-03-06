@@ -60,12 +60,17 @@ def how_many(user_input):
     res = lapse // 7
     remainder = lapse % 7
     remaining_date = end - datetime.timedelta(remainder)
+    print(remaining_date)
     while remaining_date <= end:
         if remaining_date.strftime('%a') == week_day:
             res += 1
             break
         remaining_date += datetime.timedelta(1)
     return res
+
+
+if __name__ == '__main__':
+    print(how_many("7 / 19 / Mon"))
 
 
 

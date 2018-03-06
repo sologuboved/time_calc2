@@ -9,7 +9,6 @@ def date_to_str(date, loc, with_dow):
         local_date = UTC.localize(date, is_dst=None).astimezone(loc)
     except ValueError:
         local_date = date.astimezone(loc)
-    print(local_date)
     return local_date.strftime(formatter)
 
 
