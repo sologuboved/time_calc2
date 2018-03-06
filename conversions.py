@@ -10,7 +10,7 @@ def str_to_date(raw_date, loc):
     date = {key: dict(zip(order, map(int, raw_date.split(DOT)))).get(key, getattr(now, key)) for key in order}
     if date[YEAR] < 100:
         date[YEAR] += 2000
-    return convert_to_utc(datetime(**date), loc)
+    return convert(datetime(**date), loc, to_utc=True)
 
 
 def str_to_lapse(raw_lapse, daywise):
@@ -26,15 +26,15 @@ def str_to_dow(raw_dow):
     return raw_dow
 
 
-def convert_to_loc(date, loc):
+def convert(date, loc, to_utc):
+    if to_utc:
+        source, target = loc, UTC
+    else:
+        source, target = UTC, loc
     try:
-        return UTC.localize(date, is_dst=None).astimezone(loc)
+        return source.localize(date, is_dst=None).astimezone(target)
     except ValueError:
-        return date.astimezone(loc)
-
-
-def convert_to_utc(date, loc):
-    return loc.localize(date, is_dst=None).astimezone(UTC)
+        return date.astimezone(target)
 
 
 if __name__ == '__main__':

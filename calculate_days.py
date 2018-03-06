@@ -63,15 +63,11 @@ def find_how_many(user_input, loc=None):
     except ValueError as e:
         return e
     start, fin = sorted([start, fin])
-    print(start)
-    print(fin)
     lapse = (fin - start).days
     res = lapse // 7
-    remainder = lapse % 7
-    remaining_date = fin - timedelta(remainder)
-    print(remaining_date)
+    remaining_date = fin - timedelta(lapse % 7)
     while remaining_date <= fin:
-        if remaining_date.strftime('%a') == dow:
+        if convert(remaining_date, loc, to_utc=False).strftime('%a') == dow:
             res += 1
             break
         remaining_date += timedelta(1)
@@ -86,12 +82,10 @@ def find_how_many(user_input, loc=None):
                          predicate=predicate, res=res, dow=dow, inflection=inflection)
 
 
-
-
 if __name__ == '__main__':
     pass
-    # print(find_date('now / 5', plus=False))
+    print(find_date('now / 5', plus=False))
     # print(find_days("10.3.19 / 20.3.19"))
     # print(find_dow('07.03.18'))
-    print(find_how_many("7 / 19 / Mon"))
+    # print(find_how_many("40 / 19 / Mon"))
 
