@@ -1,7 +1,7 @@
 .idea/
 tkn.py
-calculate_days.py
-calculate_hours.py
+calculate_days2.py
+calculate_hours2.py
 commands.txt
 global_vars.py
 launch.py
