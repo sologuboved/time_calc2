@@ -2,7 +2,7 @@ from datetime import datetime, timedelta
 from global_vars import *
 
 
-def process_date(raw_date, loc):
+def str_to_date(raw_date, loc):
     now = datetime.utcnow()
     if raw_date == 'now':
         return now
@@ -13,7 +13,7 @@ def process_date(raw_date, loc):
     return loc.localize(datetime(**date), is_dst=None).astimezone(UTC)
 
 
-def process_lapse(raw_lapse, daywise):
+def str_to_lapse(raw_lapse, daywise):
     if daywise:
         return timedelta(days=int(raw_lapse))
     order = [SECONDS, MINUTES, HOURS, DAYS, WEEKS]
@@ -21,6 +21,6 @@ def process_lapse(raw_lapse, daywise):
 
 
 if __name__ == '__main__':
-    print(process_date('07', MOSCOW))
-    # print(process_lapse("50", True))
+    print(str_to_date('07', MOSCOW))
+    # print(str_to_lapse("50", True))
 
