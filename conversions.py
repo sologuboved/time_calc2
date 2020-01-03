@@ -48,8 +48,10 @@ def str2datetimelet(raw_datetimelet):
     return datetime.datetime(year, month, day, hour, minute, second)
 
 
-def str2delta(raw_delta):
+def str2delta(raw_delta, is_days):
     raw_delta = raw_delta.strip()
+    if is_days:
+        return datetime.timedelta(days=int(raw_delta))
     hour, minute, second = get_hour_minute_second(raw_delta)
     return datetime.timedelta(seconds=second, minutes=minute, hours=hour)
 
@@ -60,3 +62,7 @@ def date2str(date):
 
 def datetimelet2str(datetimelet):
     return '{0:%d.%m.%Y %H:%M:%S}'.format(datetimelet)
+
+
+def delta2days(delta):
+    return "{} days".format(delta.days)
