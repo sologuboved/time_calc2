@@ -12,7 +12,7 @@ def start(update, context):
 
 
 def description(update, context):
-    text = "Commands: \n\n" \
+    text = "<b>Commands:</b> \n\n" \
            "/daft - date {0} lapse\n" \
            "/dbef - date {0} lapse\n" \
            "/dbetw - date {0} date\n" \
@@ -22,15 +22,15 @@ def description(update, context):
            "/tbef - date timelet {0} timelet\n" \
            "/tbetw - date timelet {0} date timelet\n" \
            "/tseq - timelet {{+, -, *}} timelet {{+, -, *}} ... \n\n\n" \
-           "date:\n\n" \
+           "<b>date:</b>\n\n" \
            "'today'\n" \
            "'11.12.2017' [11 December 2017]\n" \
            "'11.12' [11 December same year as today]\n" \
            "'11' [11 same month and year as today]\n\n" \
-           "lapse:\n\n" \
+           "<b>lapse:</b>\n\n" \
            "'10' [10 days]\n\n" \
-           "day of week:\n\n{{Mon, Tue, Wed, Thu, Fri, Sat, Sun}}\n\n" \
-           "timelet:\n\n" \
+           "<b>day of week:</b>\n\n{{Mon, Tue, Wed, Thu, Fri, Sat, Sun}}\n\n" \
+           "<b>timelet:</b>\n\n" \
            "'now'\n" \
            "'21:11:12'\n" \
            "'11:12' [00:11:12]\n" \
