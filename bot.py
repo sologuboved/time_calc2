@@ -1,6 +1,7 @@
 from telegram import ParseMode
 from telegram.ext import Updater, CommandHandler
 from helpers import write_pid
+import query_processors as proc
 from global_vars import DELIMITER
 from tkn import TOKEN
 
@@ -40,44 +41,17 @@ def description(update, context):
 
 def daft(update, context):
     # /daft today / 10
-    query = update['message']['text']
-    query = query.split()
-    try:
-        query = ' '.join(query[1:])
-    except IndexError:
-        query = ''
-    text = date_after(query)
-    context.bot.send_message(chat_id=update.message.chat_id, text=text)
+    proc.basic_processor(update, context, proc.daft)
 
 
-def dbef(bot, update):
+def dbef(update, context):
     # /dbef 11 / 10
-    query = update['message']['text']
-    print('query:', query)
-    query = query.split()
-    try:
-        query = ' '.join(query[1:])
-    except IndexError:
-        query = ''
-    reply = date_before(query)
-    print('reply:', reply, '\n')
-    chat_id = update.message.chat_id
-    bot.send_message(chat_id=chat_id, text=reply)
+    proc.basic_processor(update, context, proc.dbef)
 
 
-def dbetw(bot, update):
+def dbetw(update, context):
     # /dbetw 13.12 / 1.3.2018
-    query = update['message']['text']
-    print('query:', query)
-    query = query.split()
-    try:
-        query = ' '.join(query[1:])
-    except IndexError:
-        query = ''
-    reply = days_between(query)
-    print('reply:', reply, '\n')
-    chat_id = update.message.chat_id
-    bot.send_message(chat_id=chat_id, text=reply)
+    proc.basic_processor(update, context, proc.dbetw)
 
 
 def dow(bot, update):
